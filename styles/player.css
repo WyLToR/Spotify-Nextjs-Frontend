@@ -1,0 +1,15 @@
+/*https://www.smashingmagazine.com/2021/12/create-custom-range-input-consistent-browsers/*/
+.player::-webkit-slider-thumb {
+    background-color: #b10000;
+    appearance: none;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+}
+.player::-moz-range-thumb{
+    background-color: #b10000;
+    appearance: none;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+}
