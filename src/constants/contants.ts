@@ -1,0 +1,1 @@
+export const backendurl = process.env.NEXT_PUBLIC_DATABASE_URL
