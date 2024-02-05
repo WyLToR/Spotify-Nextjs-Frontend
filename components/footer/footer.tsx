@@ -4,14 +4,12 @@ import { backendurl } from "@/src/constants/contants";
 import { Simulate } from "react-dom/test-utils";
 import { log } from "console";
 import { getStorage, ref } from "firebase/storage";
-import { app } from "@/src/utils/firebaseConfig";
 
 export default function Footer() {
   const { play, setPlay } = useContext(PlayerContext);
   const [isPlaying, setPlaying] = useState(play.song != null);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const storage = getStorage(app);
   const audioRef = useRef(
     typeof window !== "undefined" ? new window.Audio() : null
   );
