@@ -33,6 +33,8 @@ export default function useDeleteArtist(endpoint: string, auth: any) {
         },
         onSuccess(data){
             queryClient.invalidateQueries('getAllArtists')
+            queryClient.invalidateQueries('getAllAlbums')
+            queryClient.invalidateQueries('getAllSongs')
         },
         onError(error){
             console.error(error)
