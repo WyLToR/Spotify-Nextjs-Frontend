@@ -6,16 +6,18 @@ export default function useCreateAlbum(endpoint: string, auth: any) {
     const queryClient = useQueryClient()
     return useMutation({
         mutationKey: ['createAlbum'],
-        mutationFn: async ({formData, artistId}: { formData: Album, artistId: string | undefined }) => {
+        mutationFn: async ({formData, file, artistId}: { formData: Album, file: File, artistId: string | undefined }) => {
             try {
                 if (auth.token !== null) {
+                    const sendedForm=new FormData()
+                    sendedForm.append('albumName', formData.albumName)
+                    sendedForm.append('pictureFile', file)
                     const resp = await fetch(`${backendurl}/${endpoint}/${artistId}`, {
                         method: Methods.post,
                         headers: {
-                            'Content-type': 'application/json',
                             'Authorization': `Bearer ${auth.token}`
                         },
-                        body: JSON.stringify(formData)
+                        body: sendedForm
                     })
 
                     if (!resp.ok) {

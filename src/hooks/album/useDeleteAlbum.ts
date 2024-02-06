@@ -34,6 +34,7 @@ export default function useDeleteAlbum(endpoint: string, auth:any) {
         },
         onSuccess(data) {
             queryClient.invalidateQueries('getAllAlbums')
+            queryClient.invalidateQueries('getAllSongs')
         },
         onError(error) {
             console.error(error)
