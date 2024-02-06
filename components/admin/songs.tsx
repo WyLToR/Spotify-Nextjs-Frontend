@@ -22,7 +22,6 @@ export default function SongsDetail() {
     albumId: string;
   }>(null);
   const { data: songs, isLoading: songsLoading } = useGetSongs("song");
-  console.log(songs);
   const { mutate } = useDeleteSong("song", auth);
   const [file, setFile] = useState<File | null>(null);
   const {
