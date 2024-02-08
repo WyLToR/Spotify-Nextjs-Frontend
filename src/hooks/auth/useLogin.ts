@@ -1,14 +1,14 @@
-import {useMutation, useQueryClient} from "react-query";
-import {Login, LoginResponse} from "../../interfaces/hookInterfaces/auth/login";
+import { useMutation, useQueryClient } from "react-query";
+import { Login, LoginResponse } from "../../interfaces/hookInterfaces/auth/login";
 import Methods from "../../enums/methods";
-import {useContext} from "react";
-import {AuthContext} from "@/src/contexts/AuthContext";
-import {jwtDecode} from "jwt-decode";
+import { useContext } from "react";
+import { AuthContext } from "@/src/contexts/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 export default function useLogin(endpoint: string) {
     const queryClient = useQueryClient();
-    const {setAuth}: any = useContext(AuthContext)
-    
+    const { setAuth }: any = useContext(AuthContext)
+
     return useMutation({
         mutationKey: ['newData'],
         mutationFn: async (loginForm: Login): Promise<any> => {
@@ -33,7 +33,8 @@ export default function useLogin(endpoint: string) {
                 setAuth({
                     userId: data.userId,
                     token: data.token,
-                    role: jwtDecode(data.token)?.role
+                    role: jwtDecode(data.token)?.role,
+                    userPicture: jwtDecode(data.token).userPicture
                 })
                 localStorage.setItem('user', data.userId)
                 localStorage.setItem('token', data.token)
