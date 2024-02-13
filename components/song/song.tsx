@@ -6,13 +6,13 @@ import { Simulate } from "react-dom/test-utils";
 export default function songDetail(props: any) {
   const { play, setPlay } = useContext(PlayerContext);
   const [isPlaying, setPlaying] = useState(play.song != null);
-  const audioUrl = props.song.songPath;
+  const audioUrl = props.song.url;
   return (
     <div className="bg-gray-900 shadow-lg rounded p-3">
       <div className="group relative">
         <img
           className="w-full md:w-72 block rounded"
-          src="https://placehold.co/600x600"
+          src={props.song.album.pictureUrl}
           alt=""
         />
         <div className="absolute bg-black rounded bg-opacity-0 group-hover:bg-opacity-60 w-full h-full top-0 flex items-center group-hover:opacity-100 transition justify-evenly">
@@ -21,8 +21,8 @@ export default function songDetail(props: any) {
             onClick={() => {
               setPlaying(!isPlaying);
               isPlaying
-                ? setPlay({ inPlay: "", song: null })
-                : setPlay({ inPlay: audioUrl, song: props.song });
+                ? setPlay({ inPlay: "", song: null, songs: null})
+                : setPlay({ inPlay: audioUrl, song: props.song, songs: props.songs.filter((song:any)=>song.album.id===props.song.album.id), });
             }}
           >
             {isPlaying ? (
