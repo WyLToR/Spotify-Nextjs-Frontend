@@ -7,11 +7,11 @@ export const getStaticProps = async () => {
     const data = await resp.json()
     return {
         props: {
-            song: data
+            songs: data
         }
     }
 }
-export default function SongPage({song}: { song: Song[] }) {
+export default function SongPage({songs}: { songs: Song[] }) {
     const [isClient, setIsClient] = useState(false);
     useEffect(() => {
         setIsClient(true);
@@ -21,9 +21,9 @@ export default function SongPage({song}: { song: Song[] }) {
             <>
                 <main className="grid place-items-center">
                     <section className="mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        {song.map((song: any) => (
+                        {songs.map((song: any) => (
                             <div key={song.id}>
-                                <SongDetail song={song}/>
+                                <SongDetail song={song} songs={songs}/>
                             </div>
                         ))}
                     </section>
